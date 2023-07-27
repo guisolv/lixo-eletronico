@@ -4,7 +4,12 @@
     animation: $anim $dur $ease
     animation-play-state: paused
     animation-delay: calc(var(--scroll) * -1s)
-    
+
+body 
+    user-select: none
+
+h1, h2, h3, h4, p
+    user-select: text
 
 //Header
 
@@ -54,7 +59,9 @@ header
         @include scroll(fadein, 1.5s, ease-in)
 
         
-    @include scroll($anim: title-scroll, $dur: 1s, $ease: ease-in-out)
+    @include scroll($anim: title-scroll, $dur: 1.5s, $ease: ease-in-out)
+
+//Disable for phones
 
 
 

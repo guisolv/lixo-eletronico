@@ -1,4 +1,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap");
+body {
+  user-select: none;
+}
+
+h1, h2, h3, h4, p {
+  user-select: text;
+}
+
 header {
   width: 95vw;
   left: 2.5vw;
@@ -40,7 +48,7 @@ header {
   margin-bottom: 20vh;
   top: 0;
   left: 0;
-  animation: title-scroll 1s ease-in-out;
+  animation: title-scroll 1.5s ease-in-out;
   animation-play-state: paused;
   animation-delay: calc(var(--scroll) * -1s);
 }
