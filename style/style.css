@@ -224,7 +224,7 @@ footer {
   justify-content: space-between;
 }
 
-@media (orientation: portrait) {
+@media (max-width: 50em) {
   .sticky {
     margin: 0;
     top: 2em;
