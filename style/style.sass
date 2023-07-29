@@ -1,15 +1,59 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap')
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap')
+@import url('https://fonts.googleapis.com/css2?family=Inter&family=Raleway:wght@700&display=swap')
 
+$card-bg: #22222a
+$card-bg-hover: #28282f
+$bg: #101016
 @mixin scroll($anim, $dur, $ease)
     animation: $anim $dur $ease
     animation-play-state: paused
     animation-delay: calc(var(--scroll) * -1s)
 
-body 
-    user-select: none
-
-h1, h2, h3, h4, p
+h1, h2, h3, h4
+    font-family: "Raleway", "Inter", sans-serif
     user-select: text
+p
+    user-select: text
+
+.grid
+    justify-content: center
+    display: grid
+    grid-template-columns: 20em 20em
+    grid-gap: 3em
+    width: 100vw
+
+.card
+    width: 20rem
+    background-color: $card-bg
+    height: 30em
+    border-radius: 1.5em
+
+    transform-style: preserve-3d
+    transform: perspective(5000px) rotateY(var(--rotateX)) rotateX(var(--rotateY))
+    cursor: pointer
+    img
+        border-radius: 1em
+        width: inherit
+        height: 15em
+        object-fit: cover
+        transform: translateZ(50px)
+        box-shadow: 0px 0px 30px #00000050
+        user-select: none
+
+    p
+        position: relative
+        left: 2.5%
+        width: 95%
+        text-align: center
+        text-indent: 0
+        transform: translateZ(30px)
+
+    &:hover
+        background-color: $card-bg-hover
+        box-shadow: 0px 0px 3px #ffffff20
+.stop
+    transition: 0.5s ease-out
+    transform: perspective(5000px) rotateX(0deg) rotateY(0deg)
 
 //Header
 
@@ -19,17 +63,13 @@ header
     height: 2em
     top: -3em
     position: fixed
-    @include scroll($anim: hide-header, $dur: 1.5s, $ease: linear)
-    
+    @include scroll($anim: hide-header, $dur: 0.5s, $ease: ease-in)
 
 @keyframes hide-header
     from
         top: 1em
     to
         top: -3em
-
-
-
 
 #right
     float: right
@@ -56,64 +96,111 @@ header
         margin: 0
     p
         opacity: 1
-        @include scroll(fadein, 1.5s, ease-in)
 
-        
-    @include scroll($anim: title-scroll, $dur: 1.5s, $ease: ease-in-out)
+        font-size: 1rem
+
+@media (min-width: 50em)
+    .sticky
+        p
+            @include scroll(fadein, 0.5s, ease-in)
+            right: 0
+        @include scroll($anim: title-scroll, $dur: 0.5s, $ease: ease-in-out)
+
+//Cellphones
+@media (max-width: 50em)
+    .sticky
+        margin: 0
+        position: static
+        text-indent: 0
 
 //Disable for phones
 
+/* width */
+::-webkit-scrollbar
+    width: 12px
+    height: 0
 
+/* Track */
+::-webkit-scrollbar-track
 
-@keyframes title-scroll 
+    background: $bg
+
+/* Handle */
+::-webkit-scrollbar-thumb
+    border-radius: 1em
+    background: #65656b
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover
+    background: #85858b
+
+@keyframes title-scroll
     from
         left: calc( 50vw - 15em )
         top: 30vh
+        font-size: 2rem
 
     to
         left: 0vw
         top: 0vh
-
+        font-size: 1rem
 
 @keyframes fadein
     from
         opacity: 0
     to
         opacity: 1
-        
-
-
 
 body
-    background-color: #101016
+    font-family: "Poppins", sans-serif
+    user-select: none
+    width: 100vw
+    background-color: $bg
     color: #ffffff
     padding: 0
     margin: 0
-    font-family: "Poppins", sans-serif
-
-
 
 section
     display: grid
     place-items: center
     align-content: center
     min-height: 50vh
+    p
+        text-align: center
+        width: clamp(50vw, 55rem, 100vw)
 
-h1
-    font-size: 3em
-
-
-.hidden
+.hidden > *
     opacity: 0
-    transition: all 1s
+    transition: all 1s ease-out
     transform: translateX(-20%)
     filter: blur(5px)
 
-.show
+.show > *
     opacity: 1
     filter: blur(0)
     transform: translateX(0)
 
 @media(prefers-reduced-motion)
-    .hidden
+    .hidden > *
         transition: none
+
+.space
+    height: 10vh
+
+.big
+    font-family: Poppins
+    font-size: 8em
+    text-shadow: 0px 0px 40px #ffffff20
+    margin: 0
+    transition: 2s ease-out
+    cursor: default
+    user-select: none
+
+
+footer
+    position: relative
+    width: 97vw
+    left: 0.5vw
+    padding: 1em
+    display: flex
+    justify-content: space-between
