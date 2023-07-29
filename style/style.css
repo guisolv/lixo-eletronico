@@ -82,21 +82,24 @@ header {
 }
 
 .sticky {
+  z-index: -100;
+  opacity: 50%;
   position: -webkit-sticky;
   position: sticky;
   display: grid;
   place-items: center;
   align-content: center;
   text-align: center;
-  width: 30em;
+  width: 15em;
   height: 13em;
   margin-top: 30vh;
   margin-bottom: 20vh;
   top: 0;
-  left: 0;
+  left: 4vw;
 }
 .sticky * {
   margin: 0;
+  width: max-content;
 }
 .sticky p {
   opacity: 1;
@@ -114,13 +117,6 @@ header {
     animation-play-state: paused;
     animation-delay: calc(var(--scroll) * -1s);
     right: 0;
-  }
-}
-@media (max-width: 50em) {
-  .sticky {
-    margin: 0;
-    position: static;
-    text-indent: 0;
   }
 }
 /* width */
@@ -147,12 +143,13 @@ header {
 
 @keyframes title-scroll {
   from {
-    left: calc(50vw - 15em);
+    left: calc(50vw - 7.5em);
     top: 30vh;
     font-size: 2rem;
+    opacity: 100%;
   }
   to {
-    left: 0vw;
+    left: 4vw;
     top: 0vh;
     font-size: 1rem;
   }
@@ -220,11 +217,38 @@ section p {
 
 footer {
   position: relative;
-  width: 97vw;
+  width: 95vw;
   left: 0.5vw;
   padding: 1em;
   display: flex;
   justify-content: space-between;
+}
+
+@media (orientation: portrait) {
+  .sticky {
+    margin: 0;
+    top: 2em;
+    height: 20em;
+    position: relative;
+    width: min-content;
+    margin: auto;
+    text-indent: 0;
+  }
+  .sticky * {
+    width: max-content;
+  }
+  p {
+    max-width: 85vw;
+  }
+  .grid {
+    width: min-content;
+    display: flex;
+    flex-direction: column;
+  }
+  footer {
+    padding-right: 0.5em;
+    padding-left: 0.5em;
+  }
 }
 
 /*# sourceMappingURL=style.css.map */
